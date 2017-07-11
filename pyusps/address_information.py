@@ -5,6 +5,7 @@ if sys.version_info[0]==3:
     from urllib.parse import urlencode
 else:
     from urllib2 import urlopen
+    from urllib import urlencode
     
 from lxml import etree
 try:
