@@ -1,6 +1,11 @@
-import urllib2
-import urllib
-
+import sys
+if sys.version_info[0]==3:
+    print('python 3 found \nimporting python 3 urllib...')
+    from urllib.request import urlopen
+    from urllib.parse import urlencode
+else:
+    from urllib2 import urlopen
+    
 from lxml import etree
 try:
     from collections import OrderedDict
@@ -100,10 +105,10 @@ def _get_response(xml):
             ])
     url = '{api_url}?{params}'.format(
         api_url=api_url,
-        params=urllib.urlencode(params),
+        params=urlencode(params),
         )
 
-    res = urllib2.urlopen(url)
+    res = urlopen(url)
     res = etree.parse(res)
 
     return res
